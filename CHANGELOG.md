@@ -11,6 +11,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Ensure NFT settings notice in the NFT import modal is shown and hidden correctly, and that the modal is hidden when clicking the link to settings ([#21100](https://github.com/MetaMask/metamask-extension/pull/21100))
 - Modify settings toggle copy to more accurately describe behaviour ([#21109](https://github.com/MetaMask/metamask-extension/pull/21109))
+### Added
+- Adds Swaps support for the zkSync Era network ([#20809](https://github.com/MetaMask/metamask-extension/pull/20809))
+
+### Changed
+- Increase account list height, so that it uses all available screen space and displays more accounts ([#20745](https://github.com/MetaMask/metamask-extension/pull/20745))
+- Update Snaps What's New text translations in 14 languages ([#20734](https://github.com/MetaMask/metamask-extension/pull/20734))
+- Remove hover background on Account Picker ([#20794](https://github.com/MetaMask/metamask-extension/pull/20794))
+- Show the first letter or number in a Snap's name as the icon, and not a symbol character, if there is no icon ([#20851](https://github.com/MetaMask/metamask-extension/pull/20851))
+- Set initial background color to system theme ([#20858](https://github.com/MetaMask/metamask-extension/pull/20858))
+- Increase network list height, so that it uses all available screen space and displays more networks ([#20801](https://github.com/MetaMask/metamask-extension/pull/20801))
+- Improve visual spacing and borders on connected sites in the snap details page ([#20854](https://github.com/MetaMask/metamask-extension/pull/20854))
+- [FLASK] Bump snaps packages ([#20567](https://github.com/MetaMask/metamask-extension/pull/20567))
+- [MMI] Added code fences to hide emojis just for MMI build ([#20754](https://github.com/MetaMask/metamask-extension/pull/20754))
+- [MMI] Show the NFT tab content for mmi ([#20830](https://github.com/MetaMask/metamask-extension/pull/20830))
+- [MMI] Changed the wrong privacy policy URL to the good one ([#20884](https://github.com/MetaMask/metamask-extension/pull/20884))
+- [MMI] Shows Stake & Portfolio buttons and hides the Buy and Bridge buttons ([#20767](https://github.com/MetaMask/metamask-extension/pull/20767))
+
+### Fixed
+- Ensure all NFT lists are sorted by the NFT's id ([#20796](https://github.com/MetaMask/metamask-extension/pull/20796))
+- Fix custom amount editing on token approval screens ([#20804](https://github.com/MetaMask/metamask-extension/pull/20804))
+
 
 ## [11.1.0]
 ### Added
