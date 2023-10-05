@@ -48,6 +48,25 @@ export const snapKeyringBuilder = (
         const addresses = await getKeyringController().getAccounts();
         return addresses.includes(address.toLowerCase());
       },
+      redirectUser: async (
+        snapId: string,
+        url: string,
+        _message: string,
+        _method: string,
+      ) => {
+        const confirmationResult: boolean =
+          (await getApprovalController().addAndShowApprovalRequest({
+            origin: snapId,
+            requestData: { url },
+            type: SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES.showSnapAccountRedirect,
+          })) as boolean;
+
+        if (confirmationResult) {
+          window.open(url, '_blank', 'noreferrer');
+        } else {
+          console.log('not redirecting user');
+        }
+      },
       saveState: async () => {
         await getKeyringController().persistAllKeyrings();
       },

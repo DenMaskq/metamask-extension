@@ -23,6 +23,7 @@ import { SnapUIMarkdown } from '../snaps/snap-ui-markdown';
 ///: BEGIN:ONLY_INCLUDE_IN(keyring-snaps)
 import { CreateSnapAccount } from '../../../pages/create-snap-account';
 import { RemoveSnapAccount } from '../../../pages/remove-snap-account';
+import { SnapAccountRedirect } from '../../../pages/snap-account-redirect';
 import SnapAuthorshipHeader from '../snaps/snap-authorship-header';
 ///: END:ONLY_INCLUDE_IN
 
@@ -59,5 +60,6 @@ export const safeComponentList = {
   CreateSnapAccount,
   RemoveSnapAccount,
   SnapAuthorshipHeader,
+  SnapAccountRedirect,
   ///: END:ONLY_INCLUDE_IN
 };

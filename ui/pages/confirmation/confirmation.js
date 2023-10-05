@@ -220,7 +220,8 @@ export default function ConfirmationPage({
 
   ///: BEGIN:ONLY_INCLUDE_IN(keyring-snaps)
   SNAP_DIALOG_TYPE.push(
-    ...Object.values(SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES),
+    SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES.confirmAccountCreation,
+    SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES.confirmAccountRemoval,
   );
   ///: END:ONLY_INCLUDE_IN
 
