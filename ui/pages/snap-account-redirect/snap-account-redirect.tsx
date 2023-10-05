@@ -11,9 +11,10 @@ import { SnapAccountRedirectContent } from './components';
 
 export interface SnapAccountRedirectProps {
   url: string;
+  snapName: string;
 }
 
-const SnapAccountRedirect = ({ url }: SnapAccountRedirectProps) => {
+const SnapAccountRedirect = ({ url, snapName }: SnapAccountRedirectProps) => {
   return (
     <Box
       className="create-snap-account-page"
@@ -23,10 +24,9 @@ const SnapAccountRedirect = ({ url }: SnapAccountRedirectProps) => {
       borderStyle={BorderStyle.none}
       flexDirection={FlexDirection.Column}
       alignItems={AlignItems.center}
-      paddingBottom={2}
-      paddingTop={2}
+      gap={2}
     >
-      <SnapAccountRedirectContent url={url} />
+      <SnapAccountRedirectContent url={url} snapName={snapName} />
     </Box>
   );
 };
