@@ -5,6 +5,7 @@ import {
   BackgroundColor,
   BlockSize,
   BorderStyle,
+  Display,
   FlexDirection,
 } from '../../helpers/constants/design-system';
 import { SnapAccountRedirectContent } from './components';
@@ -20,13 +21,20 @@ const SnapAccountRedirect = ({ url, snapName }: SnapAccountRedirectProps) => {
       className="create-snap-account-page"
       height={BlockSize.Full}
       width={BlockSize.Full}
-      backgroundColor={BackgroundColor.backgroundAlternative}
+      backgroundColor={BackgroundColor.backgroundDefault}
       borderStyle={BorderStyle.none}
       flexDirection={FlexDirection.Column}
       alignItems={AlignItems.center}
       gap={2}
     >
-      <SnapAccountRedirectContent url={url} snapName={snapName} />
+      <Box
+        display={Display.Flex}
+        flexDirection={FlexDirection.Column}
+        alignItems={AlignItems.center}
+        height={BlockSize.Full}
+      >
+        <SnapAccountRedirectContent url={url} snapName={snapName} />
+      </Box>
     </Box>
   );
 };

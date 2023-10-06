@@ -62,9 +62,9 @@ export const snapKeyringBuilder = (
           })) as boolean;
 
         if (confirmationResult) {
-          window.open(url, '_blank', 'noreferrer');
+          global.platform.openTab({ url });
         } else {
-          console.log('not redirecting user');
+          throw new Error('User denied account redirect');
         }
       },
       saveState: async () => {

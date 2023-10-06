@@ -3,10 +3,11 @@ import { Box, Text, TextField } from '../../../components/component-library';
 import { SnapAccountRedirectProps } from '../snap-account-redirect';
 import {
   AlignItems,
-  BackgroundColor,
-  BorderStyle,
+  Display,
   FlexDirection,
+  JustifyContent,
   TextAlign,
+  TextColor,
   TextVariant,
 } from '../../../helpers/constants/design-system';
 import { useI18nContext } from '../../../hooks/useI18nContext';
@@ -19,38 +20,46 @@ const SnapAccountRedirectContent = ({
   const t = useI18nContext();
   return (
     <Box
-      className="snap-account-redirect-content"
-      backgroundColor={BackgroundColor.backgroundDefault}
-      borderStyle={BorderStyle.none}
-      flexDirection={FlexDirection.Column}
-      alignItems={AlignItems.center}
-      paddingBottom={2}
-      paddingTop={2}
+      display={Display.Flex}
+      flexDirection={FlexDirection.Row}
+      justifyContent={JustifyContent.spaceBetween}
     >
-      <Text
-        data-testid="snap-account-redirect-content-title"
-        textAlign={TextAlign.Center}
-        variant={TextVariant.headingLg}
+      <Box
+        gap={4}
+        display={Display.Flex}
+        flexDirection={FlexDirection.Column}
+        alignItems={AlignItems.center}
       >
-        {t('snapAccountRedirectContinueInSiteTitle')}
-      </Text>
-      <Text
-        data-testid="snap-account-redirect-content-description"
-        textAlign={TextAlign.Center}
-        variant={TextVariant.bodyMd}
-      >
-        {t('snapAccountRedirectSiteDescription', [snapName])}
-      </Text>
-      <TextField
-        id="snap-account-redirect-url"
-        value={url}
-        autoComplete={false}
-        readOnly
-        margin="normal"
-        largeLabel
-        startAccessory={null}
-        endAccessory={<RedirectUrlIcon url={url} />}
-      />
+        <Text
+          data-testid="snap-account-redirect-content-title"
+          textAlign={TextAlign.Center}
+          variant={TextVariant.headingLg}
+        >
+          {t('snapAccountRedirectContinueInSiteTitle')}
+        </Text>
+        <Text
+          data-testid="snap-account-redirect-content-description"
+          textAlign={TextAlign.Center}
+          variant={TextVariant.bodyMd}
+        >
+          {t('snapAccountRedirectSiteDescription', [snapName])}
+        </Text>
+        <TextField
+          id="snap-account-redirect-url"
+          value={url}
+          autoComplete={false}
+          autoFocus={false}
+          readOnly
+          margin="normal"
+          largeLabel
+          startAccessory={null}
+          endAccessory={<RedirectUrlIcon url={url} />}
+          inputProps={{
+            color: TextColor.primaryDefault,
+          }}
+          truncate={false}
+        />
+      </Box>
     </Box>
   );
 };
