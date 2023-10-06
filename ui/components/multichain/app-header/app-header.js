@@ -210,6 +210,9 @@ export const AppHeader = ({ location }) => {
             <Box
               className={classnames('multichain-app-header__contents', {
                 'multichain-app-header-shadow': isUnlocked && !popupStatus,
+                'multichain-app-header__contents--no-network': Boolean(
+                  process.env.MULTICHAIN,
+                ),
               })}
               alignItems={AlignItems.center}
               width={BlockSize.Full}
@@ -220,52 +223,53 @@ export const AppHeader = ({ location }) => {
               gap={2}
             >
               {popupStatus ? (
-                <Box className="multichain-app-header__contents__container">
-                  <Box
-                    display={showNetworkPicker ? Display.Flex : Display.None}
-                  >
-                    <Tooltip title={currentNetwork?.nickname} position="right">
-                      <PickerNetwork
-                        avatarNetworkProps={{
-                          backgroundColor: testNetworkBackgroundColor,
-                        }}
-                        className="multichain-app-header__contents--avatar-network"
-                        ref={menuRef}
-                        as="button"
-                        src={currentNetwork?.rpcPrefs?.imageUrl}
-                        label={currentNetwork?.nickname}
-                        aria-label={t('networkMenu')}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          e.preventDefault();
-                          networkOpenCallback();
-                        }}
-                        display={[Display.Flex, Display.None]} // show on popover hide on desktop
-                        disabled={disableNetworkPicker}
-                      />
-                    </Tooltip>
-                  </Box>
+                <Box
+                  className="multichain-app-header__contents__container"
+                  display={showNetworkPicker ? Display.Flex : Display.None}
+                >
+                  <Tooltip title={currentNetwork?.nickname} position="right">
+                    <PickerNetwork
+                      avatarNetworkProps={{
+                        backgroundColor: testNetworkBackgroundColor,
+                      }}
+                      className="multichain-app-header__contents--avatar-network"
+                      ref={menuRef}
+                      as="button"
+                      src={currentNetwork?.rpcPrefs?.imageUrl}
+                      label={currentNetwork?.nickname}
+                      aria-label={t('networkMenu')}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        networkOpenCallback();
+                      }}
+                      display={[Display.Flex, Display.None]} // show on popover hide on desktop
+                      disabled={disableNetworkPicker}
+                    />
+                  </Tooltip>
                 </Box>
               ) : (
-                <Box display={showNetworkPicker ? Display.Flex : Display.None}>
-                  <PickerNetwork
-                    avatarNetworkProps={{
-                      backgroundColor: testNetworkBackgroundColor,
-                    }}
-                    margin={2}
-                    label={currentNetwork?.nickname}
-                    src={currentNetwork?.rpcPrefs?.imageUrl}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      networkOpenCallback();
-                    }}
-                    display={[Display.None, Display.Flex]} // show on desktop hide on popover
-                    className="multichain-app-header__contents__network-picker"
-                    disabled={disableNetworkPicker}
-                    data-testid="network-display"
-                  />
-                </Box>
+                showNetworkPicker && (
+                  <Box>
+                    <PickerNetwork
+                      avatarNetworkProps={{
+                        backgroundColor: testNetworkBackgroundColor,
+                      }}
+                      margin={2}
+                      label={currentNetwork?.nickname}
+                      src={currentNetwork?.rpcPrefs?.imageUrl}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        networkOpenCallback();
+                      }}
+                      display={[Display.None, Display.Flex]} // show on desktop hide on popover
+                      className="multichain-app-header__contents__network-picker"
+                      disabled={disableNetworkPicker}
+                      data-testid="network-display"
+                    />
+                  </Box>
+                )
               )}
               {showProductTour &&
               popupStatus &&
@@ -303,6 +307,11 @@ export const AppHeader = ({ location }) => {
                   }}
                   disabled={disableAccountPicker}
                   showAddress={Boolean(process.env.MULTICHAIN)}
+                  className={classnames({
+                    'multichain-app-header__account-picker': Boolean(
+                      process.env.MULTICHAIN,
+                    ),
+                  })}
                 />
               ) : null}
               <Box
