@@ -13,9 +13,14 @@ import { SnapAccountRedirectContent } from './components';
 export interface SnapAccountRedirectProps {
   url: string;
   snapName: string;
+  isBlockedUrl: boolean;
 }
 
-const SnapAccountRedirect = ({ url, snapName }: SnapAccountRedirectProps) => {
+const SnapAccountRedirect = ({
+  url,
+  snapName,
+  isBlockedUrl,
+}: SnapAccountRedirectProps) => {
   return (
     <Box
       className="create-snap-account-page"
@@ -33,7 +38,11 @@ const SnapAccountRedirect = ({ url, snapName }: SnapAccountRedirectProps) => {
         alignItems={AlignItems.center}
         height={BlockSize.Full}
       >
-        <SnapAccountRedirectContent url={url} snapName={snapName} />
+        <SnapAccountRedirectContent
+          url={url}
+          snapName={snapName}
+          isBlockedUrl={isBlockedUrl}
+        />
       </Box>
     </Box>
   );

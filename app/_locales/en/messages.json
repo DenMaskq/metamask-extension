@@ -4226,6 +4226,9 @@
   "snapUpdateSuccess": {
     "message": "Update complete"
   },
+  "snapUrlIsBlocked": {
+    "message": "This Snap wants to take you to a blocked site. $1."
+  },
   "snaps": {
     "message": "Snaps"
   },

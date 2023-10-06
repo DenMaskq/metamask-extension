@@ -5,6 +5,7 @@ import type {
   ResultComponent,
 } from '@metamask/approval-controller';
 import type { KeyringController } from '@metamask/keyring-controller';
+import { PhishingController } from '@metamask/phishing-controller';
 import { SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES } from '../../../../shared/constants/app';
 import { t } from '../../translate';
 import MetamaskController from '../../metamask-controller';
@@ -30,6 +31,7 @@ export const getAccountsBySnapId = async (
  * @param getSnapController - A function that retrieves the Snap Controller instance.
  * @param getApprovalController - A function that retrieves the Approval Controller instance.
  * @param getKeyringController - A function that retrieves the Keyring Controller instance.
+ * @param getPhishingController - A function that retrieves the Phishing Controller instance
  * @param removeAccountHelper - A function to help remove an account based on its address.
  * @returns The constructed SnapKeyring builder instance with the following methods:
  * - `saveState`: Persists all keyrings in the keyring controller.
@@ -40,6 +42,7 @@ export const snapKeyringBuilder = (
   getSnapController: () => SnapController,
   getApprovalController: () => ApprovalController,
   getKeyringController: () => KeyringController,
+  getPhishingController: () => PhishingController,
   removeAccountHelper: (address: string) => Promise<any>,
 ) => {
   const builder = (() => {
@@ -54,17 +57,21 @@ export const snapKeyringBuilder = (
         _message: string,
         _method: string,
       ) => {
+        await getPhishingController().maybeUpdateState();
+
+        const isBlockedUrl = getPhishingController().test(url).result;
+
         const confirmationResult: boolean =
           (await getApprovalController().addAndShowApprovalRequest({
             origin: snapId,
-            requestData: { url },
+            requestData: { url, isBlockedUrl },
             type: SNAP_MANAGE_ACCOUNTS_CONFIRMATION_TYPES.showSnapAccountRedirect,
           })) as boolean;
 
         if (confirmationResult) {
-          global.platform.openTab({ url });
+          window.open(url, '_blank', 'noreferrer');
         } else {
-          throw new Error('User denied account redirect');
+          console.log('User refused snap account redirection to:', url);
         }
       },
       saveState: async () => {

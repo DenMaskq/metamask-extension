@@ -885,12 +885,14 @@ export default class MetamaskController extends EventEmitter {
     const getSnapController = () => this.snapController;
     const getApprovalController = () => this.approvalController;
     const getKeyringController = () => this.keyringController;
+    const getPhishingController = () => this.phishingController;
 
     additionalKeyrings.push(
       snapKeyringBuilder(
         getSnapController,
         getApprovalController,
         getKeyringController,
+        getPhishingController,
         (address) => this.removeAccount(address),
       ),
     );

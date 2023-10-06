@@ -9,6 +9,7 @@ export default {
 export const DefaultStory = () => (
   <SnapAccountRedirect
     snapName="Snap Simple Keyring"
+    isBlockedUrl={true}
     url="https://metamask.github.io/snap-simple-keyring/0.2.4/"
   />
 );
