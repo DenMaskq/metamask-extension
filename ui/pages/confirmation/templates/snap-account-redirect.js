@@ -2,10 +2,16 @@ function getValues(pendingApproval, t, actions, _history) {
   const { snapName } = pendingApproval;
   const { url, isBlockedUrl } = pendingApproval.requestData;
 
-  const onSubmitAction =
-    isBlockedUrl === false
-      ? () => actions.resolvePendingApproval(pendingApproval.id, true)
-      : null;
+  const getConditionalProps = () => {
+    if (isBlockedUrl === false) {
+      return {
+        submitText: t('continue'),
+        onSubmit: () =>
+          actions.resolvePendingApproval(pendingApproval.id, true),
+      };
+    }
+    return {};
+  };
 
   return {
     content: [
@@ -20,9 +26,8 @@ function getValues(pendingApproval, t, actions, _history) {
       },
     ],
     cancelText: t('cancel'),
-    submitText: t('continue'),
-    onSubmit: onSubmitAction,
     onCancel: () => actions.resolvePendingApproval(pendingApproval.id, false),
+    ...getConditionalProps(),
   };
 }
 
